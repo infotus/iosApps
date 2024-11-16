@@ -17,6 +17,8 @@ class TestCell: UITableViewCell {
         return UINib(nibName: "TestCell", bundle: nil)
     }
     
+    var vc : ViewController?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,7 +32,17 @@ class TestCell: UITableViewCell {
     }
     
     @IBAction func buttonTap(_ sender: Any) {
-        print("Button is clicked")
+        
+        showAlert()
     }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "title", message: "message", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        UIApplication.shared.connectedScenes.compactMap { ($0 as? UIWindowScene)?.keyWindow }.last?.rootViewController?.present(alert, animated: true, completion: nil)
+
+     }
+    
     
 }

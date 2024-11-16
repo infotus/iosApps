@@ -17,21 +17,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="QGk-aS-Fqf">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="704"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x6x-0u-OX6">
+                                <rect key="frame" x="136.66666666666666" y="773" width="119.99999999999997" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="N2x-SG-8qf"/>
+                                    <constraint firstAttribute="height" constant="55" id="gEM-BA-o1O"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QGk-aS-Fqf" secondAttribute="trailing" id="Roq-Z4-1aq"/>
-                            <constraint firstItem="QGk-aS-Fqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Y7D-cq-Ldo"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QGk-aS-Fqf" secondAttribute="bottom" id="ceY-46-JZK"/>
-                            <constraint firstItem="QGk-aS-Fqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mHK-Rg-sRm"/>
+                            <constraint firstItem="QGk-aS-Fqf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AuP-he-tHk"/>
+                            <constraint firstItem="QGk-aS-Fqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BHL-sf-kDC"/>
+                            <constraint firstItem="x6x-0u-OX6" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="10" id="Cml-Wf-MP9"/>
+                            <constraint firstItem="x6x-0u-OX6" firstAttribute="top" secondItem="QGk-aS-Fqf" secondAttribute="bottom" constant="10" id="WVS-a3-HhZ"/>
+                            <constraint firstItem="QGk-aS-Fqf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cJx-Mn-9RU"/>
+                            <constraint firstItem="x6x-0u-OX6" firstAttribute="top" secondItem="QGk-aS-Fqf" secondAttribute="bottom" constant="10" id="eb1-gM-bnz"/>
+                            <constraint firstItem="x6x-0u-OX6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yE8-BT-lsx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="QGk-aS-Fqf" id="RHG-R2-YNR"/>
+                        <outlet property="toggleButton" destination="x6x-0u-OX6" id="QU8-PY-HPi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

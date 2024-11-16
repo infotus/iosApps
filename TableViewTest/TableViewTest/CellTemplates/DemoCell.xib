@@ -18,18 +18,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xs-7G-KjX">
-                        <rect key="frame" x="26" y="21" width="268" height="53"/>
+                        <rect key="frame" x="10" y="22.666666666666671" width="300" height="50"/>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="mhu-OA-eZF"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="0xs-7G-KjX" secondAttribute="bottom" constant="10" id="013-zU-nQn"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="0xs-7G-KjX" secondAttribute="trailing" constant="10" id="1yo-9P-1QQ"/>
-                    <constraint firstItem="0xs-7G-KjX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="dWn-yW-so6"/>
-                    <constraint firstItem="0xs-7G-KjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="rRh-Ll-cer"/>
+                    <constraint firstItem="0xs-7G-KjX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8W9-I0-xaG"/>
+                    <constraint firstAttribute="trailing" secondItem="0xs-7G-KjX" secondAttribute="trailing" constant="10" id="F4K-NJ-K1i"/>
+                    <constraint firstItem="0xs-7G-KjX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bfg-3G-LDF"/>
+                    <constraint firstItem="0xs-7G-KjX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="gKG-Xc-h6K"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
