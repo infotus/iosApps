@@ -17,7 +17,8 @@ class TestCell: UITableViewCell {
         return UINib(nibName: "TestCell", bundle: nil)
     }
     
-    var vc : ViewController?
+    var buttonTapAction : (() -> Void)? = nil
+//    var vc : ViewController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +33,7 @@ class TestCell: UITableViewCell {
     }
     
     @IBAction func buttonTap(_ sender: Any) {
-        
+        buttonTapAction?()
         showAlert()
     }
     

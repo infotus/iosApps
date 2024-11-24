@@ -49,7 +49,7 @@ class StackCell: UITableViewCell {
     }
     
     @IBAction func yellowAction(_ sender: Any) {
-        
+        yellowButtonTapAction?()
     }
     
     @IBAction func redAction(_ sender: Any) {

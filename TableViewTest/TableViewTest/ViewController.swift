@@ -15,6 +15,9 @@ class ViewController: UIViewController {
     var tableName = ""
     var list = [TestCell.identifier, DemoCell.identifier, FieldCell.identifier, StackCell.identifier]
     var index = 0
+    var array: [[String:Any]] = []
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -51,8 +54,78 @@ class ViewController: UIViewController {
         
     }
     
+    func createDictinary() -> [[String: Any]] {
+        var dict: [String: Any] = [:]
+        
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMM"
+        let dateString = formatter.string(from: now)
+        
+        for i in 10..<30 {
+            dict["date"] = "\(dateString)\(i)"
+            dict["score"] = i
+            self.array.append(dict)
+        }
+        return self.array
+    }
+    
+    func getDateListwithScore(list: [[String:Any]]) -> [String:Int] {
+        
+        let dates = list.compactMap { $0["date"] }
+        let scores = list.compactMap { $0["score"] }
+        var result: [String:Int] = [:]
+        
+        for i in 0..<dates.count {
+            let date = dates[i] as! String
+            let score = scores[i] as! Int
+            result.updateValue(score, forKey: date)
+        }
+        
+        return result
+    }
 
 }
+
+struct ArrayCombiner {
+    // Function to combine two arrays into dictionary
+    func combineToDictionary(keys: [String], values: [Int], sortBy: SortOption = .none) -> [String: Int] {
+        // Validate arrays have same length
+        guard keys.count == values.count else {
+            print("Error: Arrays must have the same length")
+            return [:]
+        }
+        
+        // Create dictionary using zip
+        var dictionary = Dictionary(uniqueKeysWithValues: zip(keys, values))
+        
+        switch sortBy {
+        case .byKey:
+            // Convert to array of tuples, sort, and convert back to dictionary
+            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.key < $1.key })
+        case .byValue:
+            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.value < $1.value })
+        case .byKeyDescending:
+            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.key > $1.key })
+        case .byValueDescending:
+            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.value > $1.value })
+        case .none:
+            break
+        }
+        
+        return dictionary
+    }
+    
+    // Enum for sorting options
+      enum SortOption {
+          case none
+          case byKey
+          case byValue
+          case byKeyDescending
+          case byValueDescending
+      }
+}
+
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -68,12 +141,27 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case StackCell.identifier:
             let cell = tableView.dequeueReusableCell(withIdentifier: StackCell.identifier, for: indexPath) as! StackCell
             cell.redButtonTapAction = {
-                print("RED BUTTON CLICK ACTION")
+                let dic = self.createDictinary()
+                print(dic)
+            }
+            
+            cell.yellowButtonTapAction = {
+                let list = self.createDictinary()
+                let dates = list.compactMap { $0["date"] }
+                let scores = list.compactMap { $0["score"] }
+                let result = ArrayCombiner().combineToDictionary(keys: dates as! [String], values: scores as! [Int], sortBy: .byValue)
+                print(result)
             }
             cell.selectionStyle = .none
             return cell
         case TestCell.identifier:
             let cell = tableView.dequeueReusableCell(withIdentifier: TestCell.identifier, for: indexPath) as! TestCell
+            
+            cell.buttonTapAction = {
+                let dic = self.createDictinary()
+                let result = self.getDateListwithScore(list: dic)
+                print(result)
+            }
             cell.selectionStyle = .none
             return cell
         case DemoCell.identifier:
