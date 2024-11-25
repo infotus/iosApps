@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     var list = [TestCell.identifier, DemoCell.identifier, FieldCell.identifier, StackCell.identifier]
     var index = 0
     var array: [[String:Any]] = []
-    
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         
@@ -33,7 +33,15 @@ class ViewController: UIViewController {
         tableView.register(FieldCell.nib(), forCellReuseIdentifier: FieldCell.identifier)
         
         toggleButton.addTarget(self, action: #selector(toggleCellType), for: .touchUpInside)
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
 
+    }
+    @objc func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
     }
     
     @objc func toggleCellType() {
@@ -85,46 +93,17 @@ class ViewController: UIViewController {
         return result
     }
 
-}
-
-struct ArrayCombiner {
-    // Function to combine two arrays into dictionary
-    func combineToDictionary(keys: [String], values: [Int], sortBy: SortOption = .none) -> [String: Int] {
-        // Validate arrays have same length
-        guard keys.count == values.count else {
-            print("Error: Arrays must have the same length")
-            return [:]
-        }
-        
-        // Create dictionary using zip
-        var dictionary = Dictionary(uniqueKeysWithValues: zip(keys, values))
-        
-        switch sortBy {
-        case .byKey:
-            // Convert to array of tuples, sort, and convert back to dictionary
-            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.key < $1.key })
-        case .byValue:
-            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.value < $1.value })
-        case .byKeyDescending:
-            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.key > $1.key })
-        case .byValueDescending:
-            dictionary = Dictionary(uniqueKeysWithValues: dictionary.sorted { $0.value > $1.value })
-        case .none:
-            break
-        }
-        
-        return dictionary
+    func containsWord(text: String, word: String) -> Bool {
+        return text.lowercased().contains(word.lowercased())
     }
     
-    // Enum for sorting options
-      enum SortOption {
-          case none
-          case byKey
-          case byValue
-          case byKeyDescending
-          case byValueDescending
-      }
+    // Method 4: Whole word check (with word boundaries)
+    func containsWholeWord(text: String, word: String) -> Bool {
+        let pattern = "\\b\(word)\\b"
+        return text.range(of: pattern, options: .regularExpression) != nil
+    }
 }
+
 
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -147,10 +126,17 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.yellowButtonTapAction = {
                 let list = self.createDictinary()
-                let dates = list.compactMap { $0["date"] }
-                let scores = list.compactMap { $0["score"] }
-                let result = ArrayCombiner().combineToDictionary(keys: dates as! [String], values: scores as! [Int], sortBy: .byValue)
-                print(result)
+                let dates = list.compactMap { ($0["date"] as! String)}
+                let scores = list.compactMap { ($0["score"] as! Int)}
+                let result = Dictionary.init(keys: dates, values: scores)
+                
+                let sortedDict = result.sorted { $0.key < $1.key }
+                print(sortedDict)
+                
+                // Sum value ogf int array
+                let sortedDictArray = Array(sortedDict.map({ $0.value }))
+                print(sortedDictArray.reduce(0, +))
+               
             }
             cell.selectionStyle = .none
             return cell
@@ -161,6 +147,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
                 let dic = self.createDictinary()
                 let result = self.getDateListwithScore(list: dic)
                 print(result)
+                
+                let text = "2024summer_word_weight"
+                let word = "WEight"
+                print(self.containsWord(text: text, word: word))
             }
             cell.selectionStyle = .none
             return cell
@@ -198,4 +188,14 @@ extension UIViewController{
         present(alertController, animated: true)
     }
 
+}
+
+extension Dictionary {
+    init(keys: [Key], values: [Value]) {
+        self.init()
+
+        for (key, value) in zip(keys, values) {
+            self[key] = value
+        }
+    }
 }
