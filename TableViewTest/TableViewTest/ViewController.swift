@@ -102,6 +102,8 @@ class ViewController: UIViewController {
         let pattern = "\\b\(word)\\b"
         return text.range(of: pattern, options: .regularExpression) != nil
     }
+    
+
 }
 
 
@@ -161,6 +163,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case FieldCell.identifier:
             let cell = tableView.dequeueReusableCell(withIdentifier: FieldCell.identifier, for: indexPath) as! FieldCell
             cell.selectionStyle = .none
+            
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: TestCell.identifier, for: indexPath) as! TestCell
@@ -187,7 +190,6 @@ extension UIViewController{
         // Present the alert
         present(alertController, animated: true)
     }
-
 }
 
 extension Dictionary {

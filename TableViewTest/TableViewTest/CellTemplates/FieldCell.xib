@@ -2,41 +2,73 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FieldCell" rowHeight="70" id="KGk-i7-Jjw" customClass="FieldCell" customModule="TableViewTest" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FieldCell" rowHeight="160" id="KGk-i7-Jjw" customClass="FieldCell" customModule="TableViewTest" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EPR-aF-85g">
-                        <rect key="frame" x="20" y="10" width="280" height="50"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhX-rI-ZPW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Text" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EPR-aF-85g">
+                                <rect key="frame" x="0.0" y="100" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9b6-bT-FZ3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gmz-gN-h9o">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="vIU-FE-8N2"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="w1O-hE-MYp"/>
+                            <constraint firstItem="Gmz-gN-h9o" firstAttribute="top" secondItem="qhX-rI-ZPW" secondAttribute="top" id="Cqh-E9-gAW"/>
+                            <constraint firstAttribute="height" constant="150" id="GQL-o3-YNw"/>
+                            <constraint firstItem="EPR-aF-85g" firstAttribute="leading" secondItem="qhX-rI-ZPW" secondAttribute="leading" id="Ifh-3e-lUO"/>
+                            <constraint firstAttribute="trailing" secondItem="Gmz-gN-h9o" secondAttribute="trailing" id="Inu-pL-3Yz"/>
+                            <constraint firstAttribute="bottom" secondItem="EPR-aF-85g" secondAttribute="bottom" id="gnn-Me-5dI"/>
+                            <constraint firstItem="EPR-aF-85g" firstAttribute="top" secondItem="Gmz-gN-h9o" secondAttribute="bottom" id="mje-6j-WSr"/>
+                            <constraint firstItem="Gmz-gN-h9o" firstAttribute="leading" secondItem="qhX-rI-ZPW" secondAttribute="leading" id="p05-xn-roN"/>
+                            <constraint firstAttribute="trailing" secondItem="EPR-aF-85g" secondAttribute="trailing" id="pVy-iq-H56"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                    </textField>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="EPR-aF-85g" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="RUn-EU-RPR"/>
-                    <constraint firstItem="EPR-aF-85g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="bCc-6h-j2d"/>
-                    <constraint firstItem="EPR-aF-85g" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="gdp-1L-gGE"/>
-                    <constraint firstAttribute="trailing" secondItem="EPR-aF-85g" secondAttribute="trailing" constant="20" id="ncM-RY-wfn"/>
+                    <constraint firstItem="qhX-rI-ZPW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="16x-7C-xfw"/>
+                    <constraint firstAttribute="trailing" secondItem="qhX-rI-ZPW" secondAttribute="trailing" id="Abw-Aq-XHf"/>
+                    <constraint firstItem="qhX-rI-ZPW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="BkA-Jp-81k"/>
+                    <constraint firstItem="qhX-rI-ZPW" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Eqb-lG-lkp"/>
+                    <constraint firstItem="qhX-rI-ZPW" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PZX-n9-8a4"/>
+                    <constraint firstAttribute="bottom" secondItem="qhX-rI-ZPW" secondAttribute="bottom" id="gxl-Rv-I38"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="field" destination="EPR-aF-85g" id="Pfy-6N-AyV"/>
+                <outlet property="stackView" destination="Gmz-gN-h9o" id="CRJ-tk-2wq"/>
             </connections>
-            <point key="canvasLocation" x="48.854961832061065" y="28.87323943661972"/>
+            <point key="canvasLocation" x="48.854961832061065" y="59.859154929577471"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
